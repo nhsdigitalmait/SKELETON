@@ -1,0 +1,45 @@
+# Simulator rule definition file
+#  Skeleton config
+#
+BEGIN RESPONSES
+do_process	NONE	0
+xml_response	TKW_ROOT/config/SKELETON/simulator_config/response.xml "200 OK"
+xml_post_response	TKW_ROOT/config/SKELETON/simulator_config/post_response.xml "200 OK"
+json_response	TKW_ROOT/config/SKELETON/simulator_config/response.json "200 OK"
+json_post_response	TKW_ROOT/config/SKELETON/simulator_config/post_response.json "200 OK"
+END RESPONSES
+
+BEGIN SUBSTITUTIONS
+# matches full context path
+__CP__ reg_exp context_path "^(.*)$" "$1"
+__JSON_MESSAGE__ JsonPath message 
+__XML_MESSAGE__ Xpath /message/text()
+__JWT_HEADER_A__  Jsonpath jwt_header_json a
+__JWT_PAYLOAD_C__ Jsonpath jwt_payload_json c
+END SUBSTITUTIONS
+
+BEGIN EXPRESSIONS
+ACCEPT_JSON http_header accept matches ^.*application\/json$
+ACCEPT_XML http_header accept matches ^.*application\/xml$
+JSON_MESSAGE_EXISTS JsonPathExists message
+JSON_JWT_HEADER_EXISTS jwt_header_json JsonPathExists a
+JSON_JWT_PAYLOAD_EXISTS jwt_payload_json JsonPathExists c
+passthrough	Always
+dontpassthrough	Never
+END EXPRESSIONS
+
+BEGIN RULE
+GET
+if ACCEPT_XML then xml_response
+if ACCEPT_JSON then json_response
+if passthrough then do_process
+END RULE
+
+BEGIN RULE
+POST
+if ACCEPT_XML then xml_post_response
+if ACCEPT_JSON and JSON_MESSAGE_EXISTS and JSON_JWT_HEADER_EXISTS and JSON_JWT_PAYLOAD_EXISTS then json_post_response
+if passthrough then do_process
+END RULE
+
+#=========================================================================================
