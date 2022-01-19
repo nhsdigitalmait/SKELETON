@@ -1,0 +1,8 @@
+version: '2.0'
+services:
+    tkw_skeleton_simulator:
+        ports:
+            - '4848:4848'
+        volumes:
+            - '${TKWROOT}/config/SKELETON/home/service/data'
+        image: 'nhsdigitalmait/tkw_skeleton_simulator:0.1'
