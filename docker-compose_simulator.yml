@@ -4,5 +4,5 @@ services:
         ports:
             - '4848:4848'
         volumes:
-            - '${TKWROOT}/config/SKELETON/home/service/data'
+            - '${TKWROOT}/config/SKELETON:/home/service/data'
         image: 'nhsdigitalmait/tkw_skeleton_simulator:0.1'

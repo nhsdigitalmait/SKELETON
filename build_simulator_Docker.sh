@@ -1,6 +1,6 @@
 #!/bin/bash
 # build docker image for emergency booking consumer simulator
-# usage build_provider_simulator_Docker.sh [<userid>]
+# usage build_simulator_Docker.sh [<userid>]
 # if no user id is provided it defaults to 1000 and the tag is just the version number
 #
 TAG=0.1
