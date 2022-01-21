@@ -1,5 +1,5 @@
 #!/bin/bash
-# build docker image for emergency booking consumer simulator
+# build docker image for skeleton simulator
 # usage build_simulator_Docker.sh [<userid>]
 # if no user id is provided it defaults to 1000 and the tag is just the version number
 #
@@ -26,5 +26,5 @@ echo "Skeleton Github repository shortcode:" `git show -s --format="$PROJECT %h 
 
 
 #Build the docker image
-docker build --build-arg USER_ID=$USER_ID -f Dockerfile.simulator -t nhsdigitalmait/$IMAGENAME:$TAG -t nhsdigitalmait/$IMAGENAME:latest .
+docker build --build-arg USER_ID=$USER_ID -f Dockerfile -t nhsdigitalmait/$IMAGENAME:$TAG -t nhsdigitalmait/$IMAGENAME:latest .
 echo Docker Image tagged with $TAG

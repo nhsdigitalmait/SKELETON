@@ -7,9 +7,7 @@ VOLUME /home/service/data
 VOLUME /home/service/certs
 COPY . /home/service/TKW/config/SKELETON
 WORKDIR /home/service/TKW/config/SKELETON
-RUN mkdir /home/service/TKW/config/SKELETON/simulator_saved_messages/  && chown service:service /home/service/TKW/config/SKELETON/simulator_saved_messages
-RUN mkdir /home/service/TKW/config/SKELETON/messages_for_validation/  && chown service:service /home/service/TKW/config/SKELETON/messages_for_validation
-RUN mkdir /home/service/TKW/config/SKELETON/transmitter_sent_messages/  && chown service:service /home/service/TKW/config/SKELETON/transmitter_sent_messages
+RUN mkdir simulator_saved_messages messages_for_validation transmitter_sent_messages  && chown -R service:service .
 
 RUN sh set-all-configurations.sh
 
