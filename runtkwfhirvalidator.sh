@@ -16,9 +16,6 @@ echo "trustStore = " $trustStore
 echo "trustStorePassword = " $trustStorePassword
 echo "keyStore = " $keyStore
 echo "keyStorePassword = " $keyStorePassword
-echo "Making sure output structure is available"
-cd /home/service/data
-tar -xvf /home/service/TKW/config/$PROJECT/tkwoutputstructure.tar
 cd /home/service
 # decide whether its TLSMA or not
 
