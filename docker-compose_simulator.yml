@@ -9,4 +9,5 @@ services:
             - '${TKWROOT}/config/SKELETON/simulator_saved_messages:/home/service/TKW/config/SKELETON/simulator_saved_messages'
             - '${TKWROOT}/config/SKELETON/validator_reports:/home/service/TKW/config/SKELETON/validator_reports'
             - '${TKWROOT}/config/SKELETON/logs:/home/service/TKW/config/SKELETON/logs'
+            - '${TKWROOT}/config/SKELETON/certs:/home/service/TKW/config/SKELETON/certs'
         image: 'nhsdigitalmait/tkw_skeleton_simulator:0.1'
