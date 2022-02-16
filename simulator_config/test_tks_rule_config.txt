@@ -3,6 +3,7 @@
 #
 BEGIN RESPONSES
 do_process	NONE	0
+healthcheck_response	NONE "200 OK"
 xml_response	TKW_ROOT/config/SKELETON/simulator_config/response.xml "200 OK"
 xml_post_response	TKW_ROOT/config/SKELETON/simulator_config/post_response.xml "200 OK"
 json_response	TKW_ROOT/config/SKELETON/simulator_config/response.json "200 OK"
@@ -26,12 +27,14 @@ JSON_JWT_HEADER_EXISTS jwt_header_json JsonPathExists a
 JSON_JWT_PAYLOAD_EXISTS jwt_payload_json JsonPathExists c
 passthrough	Always
 dontpassthrough	Never
+HEALTHCHECK context_path matches ^/healthcheck$
 END EXPRESSIONS
 
 BEGIN RULE
 GET
 if ACCEPT_XML then xml_response
 if ACCEPT_JSON then json_response
+if HEALTHCHECK then healthcheck_response
 if passthrough then do_process
 END RULE
 
